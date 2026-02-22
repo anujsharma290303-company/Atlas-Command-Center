@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  /* Dark theme (default) */
+  --bg-primary:    #0b0f19;
+  --bg-surface:    #111827;
+  --bg-elevated:   #1a2235;
+  --border:        rgba(255, 255, 255, 0.08);
+  --accent:        #38bdf8;
+  --accent-glow:   rgba(56, 189, 248, 0.25);
+  --accent-subtle: rgba(56, 189, 248, 0.1);
+  --text-primary:  #e5e7eb;
+  --text-muted:    #6b7280;
+  --text-inverse:  #0b0f19;
+  --danger:        #f87171;
+  --success:       #34d399;
+  --warning:       #fbbf24;
+}
+
+/* ✅ One class on <html> cascades everything */
+html.light {
+  --bg-primary:    #f1f5f9;
+  --bg-surface:    #ffffff;
+  --bg-elevated:   #e2e8f0;
+  --border:        rgba(0, 0, 0, 0.08);
+  --accent:        #0284c7;
+  --accent-glow:   rgba(2, 132, 199, 0.2);
+  --accent-subtle: rgba(2, 132, 199, 0.08);
+  --text-primary:  #0f172a;
+  --text-muted:    #64748b;
+  --text-inverse:  #ffffff;
+  --danger:        #dc2626;
+  --success:       #16a34a;
+  --warning:       #d97706;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Inter, system-ui, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Glow accent utilities */
+.glow {
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 24px var(--accent-glow);
+}
+.glow-text {
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+.glow-border {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+
+/* Widget card base */
+.widget-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.widget-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-glow);
+}
+
+/* Animated gradient background (login) */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.login-gradient {
+  background: linear-gradient(120deg, #020617, #0f172a, #111827, #020617);
+  background-size: 300% 300%;
+  animation: gradientShift 18s ease infinite;
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-6px); }
+  40%  { transform: translateX(6px); }
+  60%  { transform: translateX(-4px); }
+  80%  { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+.shake { animation: shake 0.35s ease; }
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar       { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+/* Shimmer */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  transition: all 0.4s ease;
+}
+@media (max-width: 1024px) {
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
